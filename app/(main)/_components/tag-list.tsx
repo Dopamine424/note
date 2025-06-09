@@ -32,7 +32,7 @@ export const TagList = ({ level = 0 }: TagListProps) => {
 
   const handleArchive = (tagId: string) => {
     const promise = deleteTag(tagId).then(() => {
-      fetchTags(); // Обновляем список тегов
+      fetchTags();
     });
     toast.promise(promise, {
       loading: "Удаление тега...",

@@ -10,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db, updateDocument } from "@/firebase/config";
 
+
 interface Document {
   _id: string;
   title: string;
@@ -34,7 +35,6 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   const [document, setDocument] = useState<Document | null | undefined>(undefined);
 
   useEffect(() => {
-    console.log("DocumentIdPage: params.documentId", params.documentId);
     const docRef = doc(db, "documents", params.documentId);
     const unsubscribe = onSnapshot(docRef, (snapshot) => {
       if (snapshot.exists()) {
@@ -48,7 +48,6 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
         setDocument(null);
       }
     }, (err) => {
-      console.error("DocumentIdPage: Snapshot error", err);
       setDocument(null);
     });
 
